@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = parseInt('3000');
+const PORT = parseInt(process.env.PORT || '4000', 10);
 server.listen(PORT, () => {
   console.log(`Socket.IO server is running on http://localhost:${PORT}`);
 });

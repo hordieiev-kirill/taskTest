@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { io, type Socket } from 'socket.io-client';
 import '../style/topMenu.css';
 
-const SOCKET_URL = 'http://localhost:3000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? 'http://localhost:4000';
 
 function pad(num: number, size = 2) {
   return String(num).padStart(size, '0');
