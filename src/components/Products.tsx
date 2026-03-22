@@ -102,7 +102,6 @@ export default function Products() {
                   {formatDateTime(product.date).full}
                 </div>
 
-                <button className="product-row__delete">🗑</button>
               </div>
             );
           })}
