@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 const __dirname = new URL('.', import.meta.url).pathname;
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('*', (_, res) => {
+app.get('/*', (_, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
