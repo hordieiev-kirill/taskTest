@@ -1,4 +1,9 @@
 .top-menu a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.top-menu a:hover {
+  color: var(--accent);
 }

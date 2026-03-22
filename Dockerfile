@@ -10,9 +10,7 @@ COPY . .
 RUN npm run build
 
 ENV NODE_ENV=production
-ENV FRONTEND_PORT=5173
-ENV SOCKET_PORT=4000
 
-EXPOSE 4000 5173
+EXPOSE 4000
 
-CMD ["sh", "-c", "node server.js & npm run preview -- --host 0.0.0.0 --port 5173"]
+CMD ["node", "server.js"]

@@ -1,9 +1,13 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
-const PORT = process.env.PORT || '4000';
+import path from 'path';
+
+const PORT = process.env.PORT || 4000;
+
 const app = express();
 const server = http.createServer(app);
+
 const io = new Server(server, {
   cors: {
     origin: '*',
@@ -22,6 +26,13 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Socket.IO server is running on http://localhost:${PORT}`);
+const __dirname = new URL('.', import.meta.url).pathname;
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (_, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
