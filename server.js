@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 const PORT = process.env.PORT || 4000;
 
@@ -26,10 +27,12 @@ io.on('connection', (socket) => {
   });
 });
 
-const __dirname = new URL('.', import.meta.url).pathname;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/*', (_, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
